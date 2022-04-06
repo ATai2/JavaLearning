@@ -9,6 +9,7 @@
     <modules>
         <module>basic</module>
         <module>leetcode</module>
+        <module>springbootdemo</module>
     </modules>
     <name>javalearning</name>
     <description>Demo project for Spring Boot</description>
