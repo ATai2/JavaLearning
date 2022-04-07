@@ -20,7 +20,27 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spring-boot.version>2.3.7.RELEASE</spring-boot.version>
     </properties>
-
+    <!--指定此项目的仓库指向阿里云仓库 -->
+    <repositories>
+        <repository>
+            <id>alimaven</id>
+            <name>aliyun maven</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+        </repository>
+        <!--        <repository>-->
+        <!--            <id>spring-milestones</id>-->
+        <!--            <name>Spring Milestones</name>-->
+        <!--            <url>https://repo.spring.io/libs-milestone</url>-->
+        <!--            <snapshots>-->
+        <!--                <enabled>false</enabled>-->
+        <!--            </snapshots>-->
+        <!--        </repository>-->
+        <!--        <repository>-->
+        <!--            <id>sonatype-nexus-snapshots</id>-->
+        <!--            <name>Sonatype Nexus Snapshots</name>-->
+        <!--            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>-->
+        <!--        </repository>-->
+    </repositories>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
