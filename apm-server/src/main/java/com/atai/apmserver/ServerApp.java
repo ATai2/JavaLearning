@@ -1,13 +1,11 @@
-package com.atai.javalearning;
+package com.atai.apmserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class JavalearningApplication {
-
+public class ServerApp {
     public static void main(String[] args) {
-        SpringApplication.run(JavalearningApplication.class, args);
+        SpringApplication.run(ServerApp.class);
     }
-
 }
