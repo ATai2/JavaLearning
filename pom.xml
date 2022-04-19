@@ -11,6 +11,7 @@
         <module>leetcode</module>
         <module>springbootdemo</module>
         <module>apm-server</module>
+        <module>HotswapLoader</module>
         <!--        <module>apm-agent</module>-->
     </modules>
     <name>javalearning</name>
