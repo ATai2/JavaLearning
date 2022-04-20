@@ -1,22 +1,8 @@
 package com.atai.swap;
 
-import sun.nio.ch.Interruptible;
-import sun.reflect.CallerSensitive;
-import sun.reflect.Reflection;
-import sun.reflect.annotation.AnnotationType;
-import sun.security.util.SecurityConstants;
-
-import java.io.*;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Executable;
-import java.nio.channels.Channel;
-import java.nio.channels.spi.SelectorProvider;
-import java.security.AccessControlContext;
-import java.security.AccessController;
-import java.security.PrivilegedAction;
-import java.util.Map;
-import java.util.Properties;
-import java.util.PropertyPermission;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.PrintStream;
 
 public class HackSystem {
     public final static InputStream in = System.in;
