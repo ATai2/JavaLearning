@@ -5,5 +5,7 @@ public class TraceInfo {
     Object[] args;
 
     public TraceInfo(long l, Object[] args) {
+        this.time=l;
+        this.args = args;
     }
 }
