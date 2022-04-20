@@ -19,7 +19,7 @@ public class ServerAgent {
         instrumentation.addTransformer(new ClassFileTransformer() {
             @Override
             public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classfileBuffer) {
-                System.out.println(className);
+//                System.out.println(className);
                 if (className == null || loader == null) {
                     return null;
                 }
@@ -28,9 +28,10 @@ public class ServerAgent {
                 }
                 try {
                     return buildMonitorBytes(loader, className.replaceAll("/", "."));
-                } catch (CannotCompileException | IOException | NotFoundException e) {
+                } catch (NotFoundException | CannotCompileException | IOException e) {
                     throw new RuntimeException(e);
                 }
+
             }
         });
     }
@@ -50,18 +51,27 @@ public class ServerAgent {
 
             CtMethod copyMethod = CtNewMethod.copy(method, ctClass, new ClassMap());
             method.setName(method.getName() + "$agent");
-            copyMethod.setBody("{\n" +
-                    "                Object trace = ServerAgent.begin($args);\n" +
-                    "                try{\n" +
-                    "                    return " + copyMethod.getName() + "$agent($$);\n" +
-                    "                }finally {\n" +
-                    "                    com.atai.apmagent.ServerAgent.end(trace);\n" +
-                    "                }\n" +
-                    "            }");
-
+            if (copyMethod.getReturnType().getName().equals("void")) {
+                copyMethod.setBody("{\n" +
+                        "                Object trace = com.atai.apmagent.ServerAgent.begin($args);\n" +
+                        "                System.out.println(\" server bbb   ----\");" +
+                        "                try{\n" +
+                        "                      " + copyMethod.getName() + "$agent($$);\n" +
+                        "                }finally {\n" +
+                        "                    com.atai.apmagent.ServerAgent.end(trace);\n" +
+                        "                }\n" +
+                        "            }");
+            } else {
+                copyMethod.setBody("{\n" +
+                        "                Object trace = com.atai.apmagent.ServerAgent.begin($args);\n" +
+                        "                try{\n" +
+                        "                    return " + copyMethod.getName() + "$agent($$);\n" +
+                        "                }finally {\n" +
+                        "                    com.atai.apmagent.ServerAgent.end(trace);\n" +
+                        "                }\n" +
+                        "            }");
+            }
             ctClass.addMethod(copyMethod);
-
-
         }
         return ctClass.toBytecode();
     }
