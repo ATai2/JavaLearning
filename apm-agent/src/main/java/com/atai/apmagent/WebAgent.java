@@ -6,4 +6,10 @@ public class WebAgent {
     public static void premain(String args, Instrumentation instrumentation) {
 
     }
+
+    public static class WebTrace {
+
+    }
+
+
 }
